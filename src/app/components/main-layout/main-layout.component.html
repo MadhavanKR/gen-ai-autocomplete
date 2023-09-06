@@ -1,0 +1,31 @@
+<div class="main-container">
+    <div class="letter-container">
+        <div class="container-header"> Choose your letters </div>
+        <div>
+            <mat-grid-list cols="12">
+                <mat-grid-tile *ngFor="let letter of LETTERS" (click)="onLetterClick(letter);">
+                    <h1 class="mat-display-1"> {{ letter }} </h1>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+        <div *ngIf="words.length > 0">
+            <div class="container-header"> Choose your words </div>
+            <mat-grid-list cols="12">
+                <mat-grid-tile mat-flat-button color="primary" *ngFor="let word of words" (click)="onWordClick(word);">
+                    <h1 class="mat-display-1"> {{ word }} </h1>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+    </div>
+
+    <div class="sentence-container" *ngIf="sentence.length > 0">
+        <div class="container-header-prediction"> Sentence Prediction </div>
+        <div class="sentence-display">
+            <span class="predicted-output">{{sentence.join(" ")}}</span>
+
+        </div>
+        <div class="undo-button">
+            <button mat-flat-button color="primary" (click)="removeLastWord()">Undo</button>
+        </div>
+    </div>
+</div>

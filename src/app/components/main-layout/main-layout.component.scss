@@ -6,7 +6,8 @@ mat-grid-tile {
     box-shadow: 10px 3px 10px rgba(178, 186, 206, 0.767);
     font-weight: 400;
     font-size: 25px;
-
+    width: fit-content;
+    // padding: 5px;
 }
 
 .main-container {

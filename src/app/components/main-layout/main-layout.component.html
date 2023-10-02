@@ -1,6 +1,6 @@
 <div class="main-container">
     <div class="letter-container">
-        <div class="container-header"> Choose your letters </div>
+        <div class="container-header"> Letters </div>
         <div>
             <mat-grid-list cols="12">
                 <mat-grid-tile *ngFor="let letter of LETTERS" (click)="onLetterClick(letter);">
@@ -9,20 +9,36 @@
             </mat-grid-list>
         </div>
         <div *ngIf="words.length > 0">
-            <div class="container-header"> Choose your words </div>
+            <div class="container-header"> Word Predictions </div>
             <mat-grid-list cols="12">
                 <mat-grid-tile mat-flat-button color="primary" *ngFor="let word of words" (click)="onWordClick(word);">
                     <h1 class="mat-display-1"> {{ word }} </h1>
                 </mat-grid-tile>
             </mat-grid-list>
         </div>
+        <div *ngIf="sentencePredictions.length > 0">
+            <div class="container-header"> Sentence Predictions </div>
+            <mat-grid-list cols="8">
+                <mat-grid-tile mat-flat-button color="primary" *ngFor="let sentence of sentencePredictions" (click)="onSentenceClick(sentence);">
+                    <h1 class="mat-display-1"> {{ sentence }} </h1>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
     </div>
 
-    <div class="sentence-container" *ngIf="sentence.length > 0">
-        <div class="container-header-prediction"> Sentence Prediction </div>
+    <div class="sentence-container" *ngIf="wordsFromLetter.length>0 || sentence.length > 0">
+        <div class="container-header-prediction"> Current word </div>
+        <div class="sentence-display">
+            <span class="predicted-output">{{wordsFromLetter}}</span>
+        </div>
+        <div class="undo-button">
+            <button mat-flat-button color="primary" (click)="addCurrentWord()">Enter</button>
+            <button mat-flat-button color="primary" (click)="removeLastLetter()">Backspace</button>
+        </div>
+        <br/>
+        <div class="container-header-prediction"> Current Sentence </div>
         <div class="sentence-display">
             <span class="predicted-output">{{sentence.join(" ")}}</span>
-
         </div>
         <div class="undo-button">
             <button mat-flat-button color="primary" (click)="removeLastWord()">Undo</button>

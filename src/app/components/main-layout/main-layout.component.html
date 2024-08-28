@@ -1,47 +1,70 @@
 <div class="main-container">
-    <div class="letter-container">
-        <div class="container-header"> Letters </div>
-        <div>
-            <mat-grid-list cols="12">
-                <mat-grid-tile *ngFor="let letter of LETTERS" (click)="onLetterClick(letter);">
-                    <h1 class="mat-display-1"> {{ letter }} </h1>
-                </mat-grid-tile>
-            </mat-grid-list>
+
+    <div class="input-container">
+        <div class="input-contents-container">
+            <div class="container-header"> Sentences </div>
+            <div style="align-items: center;" *ngIf="sentencePredictions.length == 0">
+                <span> Start typing for predictions to show up..</span>
+            </div>
+            <div class="chat-container" style="display: flex; flex-wrap: wrap;">
+                <div *ngFor="let sentencePrediction of sentencePredictions" class="message-local"
+                    (click)="onSentenceClick(sentencePrediction)">
+                    <p>{{sentencePrediction}}</p>
+                </div>
+            </div>
         </div>
-        <div *ngIf="words.length > 0">
-            <div class="container-header"> Word Predictions </div>
-            <mat-grid-list cols="12">
-                <mat-grid-tile mat-flat-button color="primary" *ngFor="let word of words" (click)="onWordClick(word);">
-                    <h1 class="mat-display-1"> {{ word }} </h1>
-                </mat-grid-tile>
-            </mat-grid-list>
-        </div>
-        <div *ngIf="sentencePredictions.length > 0">
-            <div class="container-header"> Sentence Predictions </div>
-            <mat-grid-list cols="8">
-                <mat-grid-tile mat-flat-button color="primary" *ngFor="let sentence of sentencePredictions" (click)="onSentenceClick(sentence);">
-                    <h1 class="mat-display-1"> {{ sentence }} </h1>
-                </mat-grid-tile>
-            </mat-grid-list>
+
+        <!-- <div class="input-contents-container">
+            <div class="container-header"> Words </div>
+            <div style="align-items: center;" *ngIf="wordPredictions.length == 0">
+                <span> Start typing for predictions to show up</span>
+            </div>
+            <div class="chat-container" style="display: flex; flex-wrap: wrap;">
+                <div *ngFor="let wordPrediction of wordPredictions" class="message-local"
+                    (click)="onSentenceClick(wordPrediction)">
+                    <p>{{wordPrediction}}</p>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="input-contents-container">
+            <div class="container-header"> Letters </div>
+            <div>
+                <mat-grid-list cols="12">
+                    <mat-grid-tile *ngFor="let letter of LETTERS" (click)="onLetterClick(letter);">
+                        <h1 class="mat-display-1"> {{ letter }} </h1>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </div>
         </div>
     </div>
 
-    <div class="sentence-container" *ngIf="wordsFromLetter.length>0 || sentence.length > 0">
-        <div class="container-header-prediction"> Current word </div>
-        <div class="sentence-display">
-            <span class="predicted-output">{{wordsFromLetter}}</span>
+    <div class="sentence-container">
+        <div class="chat-container">
+            <div *ngFor="let curSentence of sentenceLog" class="message-local">
+                <p>{{curSentence}}</p>
+            </div>
         </div>
+
+        <mat-form-field class="input-full-width">
+            <mat-label>Current sentence</mat-label>
+            <input matInput placeholder="Start typing.." value={{sentence}} (keyup)="updateCurrentSentence($event)">
+        </mat-form-field>
+
+        <hr />
         <div class="undo-button">
-            <button mat-flat-button color="primary" (click)="addCurrentWord()">Enter</button>
-            <button mat-flat-button color="primary" (click)="removeLastLetter()">Backspace</button>
+            <button mat-flat-button color="primary" (click)="addSentenceToLog()">Enter</button>
+            <!-- <button mat-flat-button color="primary" (click)="removeLastLetter()">Backspace</button> -->
         </div>
-        <br/>
-        <div class="container-header-prediction"> Current Sentence </div>
-        <div class="sentence-display">
-            <span class="predicted-output">{{sentence.join(" ")}}</span>
-        </div>
-        <div class="undo-button">
-            <button mat-flat-button color="primary" (click)="removeLastWord()">Undo</button>
+        <br />
+
+        <div *ngIf="wordPredictions.length > 0">
+            <mat-chip-set cdkDropList cdkDropListOrientation="horizontal">
+                <mat-chip class="word-box" *ngFor="let wordPrediction of wordPredictions"
+                    (click)="onWordClick(wordPrediction)">
+                    {{wordPrediction}}
+                </mat-chip>
+            </mat-chip-set>
         </div>
     </div>
 </div>

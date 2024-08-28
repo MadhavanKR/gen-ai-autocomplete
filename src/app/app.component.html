@@ -1,7 +1,29 @@
-<div>
-    <mat-toolbar color="primary">
-        <span>Autocomplete</span>
+<div class="app-container">
+    <mat-toolbar class="title-toolbar" color="primary">
+        <div class="title">
+            <span>Autocomplete</span>
+        </div>
+        <div>
+            <mat-form-field class="dropdown-select">
+                <mat-label>Select a participant</mat-label>
+                <mat-select [(value)]="participant" (valueChange)="onParticipantChange($event)">
+                    <mat-option>None</mat-option>
+                    <mat-option value="doctor">Doctor</mat-option>
+                    <mat-option value="family">Family</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="dropdown-select">
+                <mat-label>Select a topic</mat-label>
+                <mat-select [(value)]="topic" (valueChange)="onTopicChange($event)">
+                    <mat-option>None</mat-option>
+                    <mat-option value="treatment,recovery">Treatment & recovery</mat-option>
+                    <mat-option value="finances,insurance">Finances & insurance</mat-option>
+                    <mat-option value="family wellbeing">Family wellbeing</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
     </mat-toolbar>
 </div>
 
-<app-main-layout/>
+<app-main-layout />

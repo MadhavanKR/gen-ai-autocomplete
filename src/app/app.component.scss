@@ -1,0 +1,22 @@
+.app-container {
+    display: flex;
+    flex-direction: row;
+}
+.title-toolbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.title {
+    justify-content: flex-start;
+}
+
+.dropdown-select {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-right: 10px;
+    
+}

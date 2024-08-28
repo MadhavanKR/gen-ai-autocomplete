@@ -14,29 +14,32 @@ mat-grid-tile {
     display: flex;
 }
 
-.letter-container {
+.input-container {
     width: 75%;
+    flex-direction: row;
+}
+
+.input-contents-container {
     flex-direction: column;
     margin: 5px;
     height: max-content;
     padding: 10px;
-    border: 0.5px solid rgba(29, 54, 124, 0.767) ;
+    border: 0.5px solid rgba(29, 54, 124, 0.767);
     border-radius: 10px;
     box-shadow: 1px 3px 10px rgba(29, 54, 124, 0.767);
-    
-    
 }
 
 .sentence-container {
     width: 25%;
-    // height: 100vh;
+    // height: 10vh;
     flex-direction: row;
-    border: 0.5px solid rgba(94, 14, 97, 0.767) ;
+    border: 0.5px solid rgba(94, 14, 97, 0.767);
     border-radius: 10px;
     box-shadow: 1px 3px 10px rgba(154, 77, 156, 0.767);
     margin: 5px;
 }
-.container-header{
+
+.container-header {
     position: relative;
     font-size: 32px;
     align-items: center;
@@ -48,7 +51,8 @@ mat-grid-tile {
     margin-top: 15px;
     margin-bottom: 15px;
 }
-.container-header-prediction{
+
+.container-header-prediction {
     position: relative;
     font-size: 32px;
     align-items: center;
@@ -60,16 +64,67 @@ mat-grid-tile {
     margin-top: 15px;
     margin-bottom: 15px;
 }
-.predicted-output{
+
+.predicted-output {
     position: relative;
     font-size: 24px;
     font-family: 'Courier New', Courier, monospace;
 }
-.sentence-display{
+
+.sentence-display {
     margin: 10px;
 }
-.undo-button{
+
+.undo-button {
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+
+.input-full-width {
+    // width: 100%;
+    margin: 10px;
+    display: block;
+}
+
+
+.chat-container {
+    max-height: 25vh;
+    display: block;
+    overflow-y: scroll;
+    .message-local {
+        position: relative;
+        max-width: 45%;
+        padding: 5px 10px;
+        margin: 0.3em 2em;
+        color: white;
+        background: rgb(32, 24, 63);
+        border-radius: 25px;
+        float: left;
+        clear: both;
+
+        &:before {
+            content: ' ';
+            height: 0;
+            position: absolute;
+            width: 0;
+            border: .6em solid transparent;
+            /* arrow size */
+            border-right-color: rgb(32, 24, 63);
+            /* arrow color */
+            /* positioning */
+            position: absolute;
+            bottom: 15px;
+            left: -1em;
+
+        }
+    }
+}
+
+::ng-deep .mat-mdc-standard-chip {
+     
+        color: white;
+        background-color: rgb(32, 24, 63);
+
 }

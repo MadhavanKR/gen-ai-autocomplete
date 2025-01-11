@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 export interface PredictionResponse {
   sentence_predictions: string[];
@@ -9,6 +10,12 @@ export interface WordPredictionResponse {
   word_suggestions: string[];
 }
 
+export interface AllPatientResponse {
+  patientId: string;
+  patientName: string;
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,8 +24,22 @@ export class HttpclientService {
   participant = 'doctor';
   topic = ['treatment', 'recovery'];
   patientId = 'f1833e58-c9bd-42d6-a6a1-ac91fbb6ce11';
-    
-  constructor(private http: HttpClient) { }
+  availablePatients = new BehaviorSubject<AllPatientResponse[]>([]);
+  constructor(private http: HttpClient) {
+    this.getAllPatients();
+   }
+
+  getAllPatients() {
+    let url = this.baseUrl + 'getAllPatients';
+    this.http.get(url).subscribe((response: any) => {
+      this.availablePatients.next(response);
+    });
+  }
+
+  setPatient(patient: string) {
+    this.patientId = patient
+    console.log('updated patient to ' + patient);
+  }
 
   setParticipant(participant: string) {
     this.participant = participant;

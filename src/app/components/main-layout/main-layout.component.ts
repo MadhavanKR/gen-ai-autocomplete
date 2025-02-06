@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpclientService, PredictionResponse, WordPredictionResponse } from 'src/app/services/httpclient.service';
 
 @Component({

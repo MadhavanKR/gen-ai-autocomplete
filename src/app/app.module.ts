@@ -9,7 +9,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
@@ -18,29 +18,23 @@ import {MatSelectModule} from '@angular/material/select';
 import { EnhancedKeyboardComponent } from './components/enhanced-keyboard/enhanced-keyboard.component';
 import { RouterModule } from '@angular/router';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    MainLayoutComponent,
-    EnhancedKeyboardComponent,
-  ],
-  imports: [
-    RouterModule,
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatGridListModule,
-    MatButtonModule,
-    HttpClientModule,
-    MatInputModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatChipsModule,
-    MatSelectModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        MainLayoutComponent,
+        EnhancedKeyboardComponent,
+    ],
+    bootstrap: [AppComponent], 
+    imports: [RouterModule,
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatCardModule,
+        MatGridListModule,
+        MatButtonModule,
+        MatInputModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatChipsModule,
+        MatSelectModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

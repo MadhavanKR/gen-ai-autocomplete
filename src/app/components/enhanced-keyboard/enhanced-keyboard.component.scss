@@ -1,0 +1,236 @@
+ul {
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  height: 50px;
+  // padding: 20px;
+  font-size: 50px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  border: none;
+  box-sizing:content-box;
+}
+input:focus, textarea:focus{
+  outline: none;
+}
+
+
+
+.simple-keyboard {
+  width: 98%;
+  /* Adjust width as needed */
+  height: 45%;
+  /* Increase height */
+  padding: 10px;
+  // margin-top: 10px;
+  border: 0.5px solid rgba(10, 11, 12, 0.767);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  box-shadow: 1px 3px 10px rgba(29, 54, 124, 0.767);
+  // margin-top: 50px;
+}
+
+::ng-deep .hg-theme-default .hg-button.hg-standardBtn {
+  // width: 20px;
+  height: 50px;
+  font-size: x-large;
+  font-weight: bolder;
+  padding: 10px;
+}
+
+::ng-deep .hg-theme-default .hg-row {
+  margin-top: 20px;
+}
+
+::ng-deep .hg-theme-default .hg-button.hg-functionBtn {
+  width: 50px;
+  height: 50px;
+  font-size: large;
+  font-weight: bolder;
+}
+
+.word-prediction-container {
+  height: 10%;
+  // border: 2px solid red;
+  width: 98%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 0.5px solid rgba(10, 11, 12, 0.767);
+  border-radius: 10px;
+  box-shadow: 1px 3px 10px rgba(29, 54, 124, 0.767);
+}
+
+.input-container {
+  // height: auto;
+  width: 96%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 0.5px solid rgba(10, 11, 12, 0.767);
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  box-shadow: 1px 3px 10px rgba(29, 54, 124, 0.767);
+}
+
+.user-input-container {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  width: 73.5vw;
+  height: calc(100vh - 100px + 10px);
+  border: 1px solid red;
+}
+
+.chat-history-container {
+  width: 23vw;
+  padding: 10px;
+  border: 0.5px solid rgba(10, 11, 12, 0.767);
+  border-radius: 10px;
+  box-shadow: 1px 3px 10px rgba(29, 54, 124, 0.767);
+  height: calc(100vh - 100px);
+
+  margin-right: 10px;
+
+}
+
+.sentence-prediction-container {
+  height: 38%;
+  width: 98%;
+  display: flex;
+  flex-wrap: wrap;
+  // flex-direction: row;
+  position: relative;
+  // overflow-y: scroll;
+  // border: 1px solid blue;
+  padding: 10px;
+  border: 0.5px solid rgba(10, 11, 12, 0.767);
+  border-radius: 10px;
+  box-shadow: 3px 2px rgb(142 157 199 / 77%)
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  height: 92vh;
+  margin: 10px;
+}
+
+.chat-container {
+  // max-height: 25vh;
+  height: 38%;
+  display: flex;
+  font-size: 20px;
+  overflow-y: scroll;
+
+  .message-local {
+    position: relative;
+    // max-width: 45%;
+    padding: 5px 10px;
+    margin: 0.3em 2em;
+    color: white;
+    background: rgb(18, 18, 20);
+    border-radius: 25px;
+    float: left;
+    clear: both;
+
+    &:before {
+      content: ' ';
+      height: 0;
+      position: absolute;
+      width: 0;
+      border: .6em solid transparent;
+      /* arrow size */
+      border-right-color: rgb(23, 22, 29);
+      /* arrow color */
+      /* positioning */
+      position: absolute;
+      bottom: 15px;
+      left: -1em;
+
+    }
+  }
+}
+
+.chat {
+  background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+  background-size: 300px 500px;
+  background-repeat: repeat;
+}
+
+.message__text {
+  border-radius: 20px;
+  padding: 8px 15px;
+  margin: 5px 10px;
+  width: 500px;
+  // height: 100px;
+  font-size: x-large;
+}
+
+.customer.message__text {
+  // margin-right: 25%;
+  background: #eee;
+  position: relative;
+  // width: auto;
+}
+
+.customer.message__text.last:before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+  left: -7px;
+  height: 20px;
+  width: 20px;
+  background: #eee;
+  border-bottom-right-radius: 15px;
+}
+
+.customer.message__text.last:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: -10px;
+  width: 10px;
+  height: 20px;
+  background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+  background-size: 300px 500px;
+  background-repeat: repeat;
+  border-bottom-right-radius: 10px;
+}
+
+.team.message__text {
+  margin-left: 25%;
+  background: #dcf8c6;
+  position: relative;
+}
+
+.team.message__text.last:before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+  right: -8px;
+  height: 20px;
+  width: 20px;
+  background: #dcf8c6;
+  border-bottom-left-radius: 15px;
+}
+
+.team.message__text.last:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  right: -10px;
+  width: 10px;
+  height: 20px;
+  background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+  background-size: 300px 500px;
+  background-repeat: repeat;
+  border-bottom-left-radius: 10px;
+}

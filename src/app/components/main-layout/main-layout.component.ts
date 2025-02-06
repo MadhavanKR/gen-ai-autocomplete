@@ -33,6 +33,7 @@ export class MainLayoutComponent {
     if (this.sentence.length >= 2) {
       this.updateWordPredictions();
     }
+    
   }
 
   updateCurrentSentence(event: any) {

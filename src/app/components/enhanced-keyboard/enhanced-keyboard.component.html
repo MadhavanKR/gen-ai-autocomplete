@@ -1,0 +1,44 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="main-container">
+	<div class="chat-history-container">
+		here are the user sentence choices
+	</div>
+	<div class="user-input-container">
+		<div class="sentence-prediction-container">
+			<!-- <div class="chat-container" style="display: flex; flex-wrap: wrap;"> -->
+			<!-- <mat-chip-set cdkDropList cdkDropListOrientation="vertical">
+				<mat-chip class="word-box" *ngFor="let sentencePrediction of sentencePredictions"
+					(click)="onWordClick(sentencePrediction)">
+					{{sentencePrediction}}
+				</mat-chip>
+			</mat-chip-set> -->
+			<!-- <div *ngFor="let sentencePrediction of sentencePredictions" class="message-local"
+                    (click)="onWordClick(sentencePrediction)">
+                    <p>{{sentencePrediction}}</p>
+                </div>
+            </div> -->
+			<div *ngFor="let sentencePrediction of sentencePredictions">
+				<div class="customer message__text">
+					{{sentencePrediction}}
+				</div>
+			</div>
+		</div>
+
+		<div class="word-prediction-container" *ngIf="wordPredictions.length > 0">
+
+			<mat-chip-set cdkDropList cdkDropListOrientation="horizontal">
+				<mat-chip class="word-box" *ngFor="let wordPrediction of wordPredictions"
+					(click)="onWordClick(wordPrediction)">
+					{{wordPrediction}}
+				</mat-chip>
+			</mat-chip-set>
+
+		</div>
+
+		<div class="input-container">
+			<input (input)="onInputChange($event)" class="input" value={{value}}
+				placeholder="Tap on the virtual keyboard to start" />
+		</div>
+		<div class="simple-keyboard"></div>
+	</div>
+</div>

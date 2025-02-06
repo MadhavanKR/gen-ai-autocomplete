@@ -1,7 +1,6 @@
 import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import Keyboard from "simple-keyboard";
 import { HttpclientService, PredictionResponse, WordPredictionResponse } from 'src/app/services/httpclient.service';
-// import "simple-keyboard/build/css/index.css";
 
 @Component({
   selector: 'app-enhanced-keyboard',

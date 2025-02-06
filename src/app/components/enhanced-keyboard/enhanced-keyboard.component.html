@@ -17,11 +17,11 @@
                     <p>{{sentencePrediction}}</p>
                 </div>
             </div> -->
-			<div *ngFor="let sentencePrediction of sentencePredictions">
-				<div class="customer message__text">
-					{{sentencePrediction}}
-				</div>
+
+			<div *ngFor="let sentencePrediction of sentencePredictions" class="customer">
+				<span class="message__text">{{sentencePrediction}}</span>
 			</div>
+
 		</div>
 
 		<div class="word-prediction-container" *ngIf="wordPredictions.length > 0">

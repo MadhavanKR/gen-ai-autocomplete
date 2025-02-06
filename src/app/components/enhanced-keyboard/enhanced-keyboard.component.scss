@@ -102,9 +102,8 @@ input:focus, textarea:focus{
   width: 98%;
   display: flex;
   flex-wrap: wrap;
-  // flex-direction: row;
-  position: relative;
-  // overflow-y: scroll;
+  flex-direction: column;
+  overflow-y: scroll;
   // border: 1px solid blue;
   padding: 10px;
   border: 0.5px solid rgba(10, 11, 12, 0.767);
@@ -165,19 +164,22 @@ input:focus, textarea:focus{
   border-radius: 20px;
   padding: 8px 15px;
   margin: 5px 10px;
-  width: 500px;
-  // height: 100px;
+  width: 100px;
+  height: 100px;
   font-size: x-large;
+  border: 1px solid green;
 }
 
-.customer.message__text {
-  // margin-right: 25%;
+.customer {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
   background: #eee;
-  position: relative;
-  // width: auto;
+  border: 1px solid red;
+
 }
 
-.customer.message__text.last:before {
+.message__text.last:before {
   content: "";
   position: absolute;
   z-index: 0;
@@ -189,7 +191,7 @@ input:focus, textarea:focus{
   border-bottom-right-radius: 15px;
 }
 
-.customer.message__text.last:after {
+.message__text.last:after {
   content: "";
   position: absolute;
   z-index: 1;

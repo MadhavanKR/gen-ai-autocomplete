@@ -57,11 +57,9 @@ export class MainLayoutComponent {
 
   addSentenceToLog() {
     if (this.sentence) {
-      this.httpClientService.addToContext(this.sentence);
       this.sentenceLog.push(this.sentence);
       this.sentence = '';
     }
-    
   }
 
   onWordClick(word: any) {

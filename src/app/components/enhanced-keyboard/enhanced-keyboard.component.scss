@@ -54,6 +54,7 @@ input:focus, textarea:focus{
 }
 
 .word-prediction-container {
+  display: flex;
   height: 10%;
   // border: 2px solid red;
   width: 98%;
@@ -62,6 +63,9 @@ input:focus, textarea:focus{
   border: 0.5px solid rgba(10, 11, 12, 0.767);
   border-radius: 10px;
   box-shadow: 1px 3px 10px rgba(29, 54, 124, 0.767);
+  // border: 1px solid red;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .input-container {
@@ -82,33 +86,45 @@ input:focus, textarea:focus{
   align-items: center;
   width: 73.5vw;
   height: calc(100vh - 100px + 10px);
-  border: 1px solid red;
+  // border: 1px solid red;
 }
 
 .chat-history-container {
   width: 23vw;
-  padding: 10px;
   border: 0.5px solid rgba(10, 11, 12, 0.767);
   border-radius: 10px;
   box-shadow: 1px 3px 10px rgba(29, 54, 124, 0.767);
   height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
 
   margin-right: 10px;
 
+}
+
+.chat-history-header {
+  // width: 100%;
+  // height: 50px;
+  background-color:rgb(32, 26, 26);
+  color: white;
+  font-size: 36px;
+  text-align: center;
+  padding: 10px;
 }
 
 .sentence-prediction-container {
   height: 38%;
   width: 98%;
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   flex-direction: column;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   // border: 1px solid blue;
   padding: 10px;
   border: 0.5px solid rgba(10, 11, 12, 0.767);
   border-radius: 10px;
-  box-shadow: 3px 2px rgb(142 157 199 / 77%)
+  box-shadow: 3px 2px rgb(142 157 199 / 77%);
 }
 
 .main-container {
@@ -166,16 +182,41 @@ input:focus, textarea:focus{
   margin: 5px 10px;
   width: 100px;
   height: 100px;
-  font-size: x-large;
-  border: 1px solid green;
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  justify-content: center;
+  align-items: center;
+  // border: 1px solid green;
 }
 
-.customer {
-  display: inline-flex;
+.message__text_log {
+  border-radius: 20px;
+  padding: 8px 15px;
+  margin: 5px 10px;
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: 1.5em;
+  // border: 1px solid green;
+}
+
+.customer_log {
+  display: flex;
+  width: fit-content;
   flex-direction: row;
   justify-content: center;
   background: #eee;
-  border: 1px solid red;
+  // border: 1px solid red;
+}
+
+.customer {
+  display: flex;
+  width: auto;
+  flex-direction: row;
+  // justify-content: center;
+  background: #eee;
+  // border: 1px solid red;
 
 }
 
@@ -235,4 +276,117 @@ input:focus, textarea:focus{
   background-size: 300px 500px;
   background-repeat: repeat;
   border-bottom-left-radius: 10px;
+}
+
+// word prection buttons css
+/* From Uiverse.io by cssbuttons-io */ 
+.word-button {
+  // display: inline-block;
+  padding: 12px 24px;
+  margin: 5px;
+  border: 1px solid #4f4f4f;
+  border-radius: 4px;
+  // width: 40px;
+  transition: all 0.2s ease-in;
+  position: relative;
+  overflow: hidden;
+  font-size: 30px;
+  cursor: pointer;
+  color: black;
+  z-index: 1;
+}
+
+.word-button:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.25);
+  top: 100%;
+  width: 140%;
+  height: 180%;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.word-button:after {
+  content: "";
+  position: absolute;
+  left: 55%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.45);
+  top: 180%;
+  width: 160%;
+  height: 190%;
+  background-color: #94e651;
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.word-button:hover {
+  color: #030303;
+  border: 1px solid #94e651;
+}
+
+.word-button:hover:before {
+  top: -35%;
+  background-color: #94e651;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.word-button:hover:after {
+  top: -45%;
+  background-color: #94e651;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+// loader 
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-wave {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-bar {
+  width: 20px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: rgb(32, 26, 26);
+  border-radius: 5px;
+  animation: loading-wave-animation 1s ease-in-out infinite;
+}
+
+.loading-bar:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.loading-bar:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.loading-bar:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+@keyframes loading-wave-animation {
+  0% {
+    height: 10px;
+  }
+
+  50% {
+    height: 50px;
+  }
+
+  100% {
+    height: 10px;
+  }
 }

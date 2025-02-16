@@ -1,6 +1,7 @@
 import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
+import { Subscription } from 'rxjs';
 import Keyboard from "simple-keyboard";
-import { HttpclientService, PredictionResponse, WordPredictionResponse } from 'src/app/services/httpclient.service';
+import { HttpclientService, PredictionResponse, WordPredictionResponse, ChatMessage } from 'src/app/services/httpclient.service';
 
 @Component({
   selector: 'app-enhanced-keyboard',
@@ -15,11 +16,18 @@ export class EnhancedKeyboardComponent implements AfterViewInit {
   sentenceResponse!: PredictionResponse;
   nextSentenceResponse!: PredictionResponse;
 
+  sentencePredictionLoading: boolean = true;
+  wordPredictionLoading: boolean = true;
+
   wordPredictions: string[] = [];
   sentence: string = '';
-  sentencePredictions: string[] = ["I am coming now. Whereas disregard and contempt for human rights have resulted", "I am coming now", "I am coming now","I am coming now","I am coming now","I am coming now"];
+  sentencePredictions: string[] = [];
   wordsFromLetter: string = '';
   sentenceLog: string[] = [];
+
+  selectedWords: string[] = [];
+
+  reloadSubscription !: Subscription;
 
   ngAfterViewInit() {
     this.keyboard = new Keyboard({
@@ -29,53 +37,81 @@ export class EnhancedKeyboardComponent implements AfterViewInit {
   }
 
   ngOnInit() {
+    this.reloadSubscription = this.httpClientService.reloadPredictions$.subscribe(() => {
+      this.updatePredictions();
+    })
+    this.updatePredictions();
+  }
+
+  updatePredictions() {
+    this.sentencePredictionLoading = true;
+    this.wordPredictionLoading = true;
+    this.sentencePredictions = [];
+    this.wordPredictions = [];
     this.updateSentencePredictions();
+    this.updateWordPredictions();
   }
 
   updateSentencePredictions() {
     this.httpClientService.getNextSentences(this.sentence).subscribe((response: any) => {
       this.sentenceResponse = response;
+      console.log(JSON.stringify(response))
       this.sentencePredictions = this.sentenceResponse?.sentence_predictions;
-      console.log(JSON.stringify(this.sentencePredictions));
+      this.sentencePredictionLoading = false;
     });
   }
 
   updateWordPredictions() {
     console.log('updating word predictions');
-    this.httpClientService.getNextWords(this.sentence).subscribe((response: any) =>{
+    this.httpClientService.getNextWordsLLM(this.sentence).subscribe((response: any) =>{
         this.wordsResponse = response;
-        this.wordPredictions = this.wordsResponse.word_suggestions;
-        console.log(this.wordPredictions);
+        console.log(JSON.stringify(this.wordsResponse))
+        this.wordPredictions = this.wordsResponse?.word_suggestions;
+        this.wordPredictionLoading = false;
     });  
   }
 
   constructor(private httpClientService: HttpclientService) { }
 
-  onWordClick = (word: string) => {
+  onWordClick(word: any) {
+    var sentenceSplit = this.sentence.split(' ')
+    if (word.substring(sentenceSplit[sentenceSplit.length - 1])) {
+      sentenceSplit[sentenceSplit.length - 1] = word;
+      this.sentence = sentenceSplit.join(' ') + ' ';
+    } else {
+      this.sentence = this.sentence + ' ' + word + ' ';
+    }
+    this.wordPredictions = [];
+    this.updatePredictions();
+  }
 
+  onSentenceClick(sentence: any) {
+    this.addCurrentSentenceToLog(sentence, true);
+    this.updatePredictions();
   }
 
   onChange = (input: string) => {
-    this.value = input;
     this.sentence = input;
-    if (this.sentence.split(' ').length >= 2 || this.sentence.length > 1) {
-      this.updateSentencePredictions();
-      this.updateWordPredictions();
-    }
+    this.keyboard.setInput(this.sentence);
+    this.updatePredictions();
     console.log("Input changed", input);
   };
 
   onKeyPress = (button: string) => {
     console.log("Button pressed", button);
-
+    
     /**
      * If you want to handle the shift and caps lock buttons
      */
     if (button === "{shift}" || button === "{lock}") this.handleShift();
+
+    if (button === "{enter}")
+      this.handleEnterPressed();
   };
 
   onInputChange = (event: any) => {
-    this.keyboard.setInput(event.target.value);
+    console.log('onInputChange: ' + event.target.value)
+    this.keyboard.setInput(this.sentence + event.target.value);
   };
 
   handleShift = () => {
@@ -86,4 +122,20 @@ export class EnhancedKeyboardComponent implements AfterViewInit {
       layoutName: shiftToggle
     });
   };
+
+  handleEnterPressed = () => {
+    this.keyboard.setInput('');
+    this.addCurrentSentenceToLog(this.sentence, false);
+  }
+
+  addCurrentSentenceToLog = (message: string, isPredicted: boolean) => {
+    const chatMessage: ChatMessage = {
+      message: message,
+      predicted: isPredicted,
+      partial_sentence: this.sentence
+    }
+    this.sentenceLog.push(message);
+    this.sentence = '';
+    this.httpClientService.addSentenceToHistory(chatMessage).subscribe();
+  }
 }

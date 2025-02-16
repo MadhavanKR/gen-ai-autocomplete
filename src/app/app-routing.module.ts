@@ -4,12 +4,12 @@ import { EnhancedKeyboardComponent } from './components/enhanced-keyboard/enhanc
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 
 const routes: Routes = [{
-  path: 'v2',
+  path: '',
   title: 'New Keyboard',
   component: EnhancedKeyboardComponent
 },
 {
-  path: '',
+  path: 'v1',
   title: 'Old Keyboard',
   component: MainLayoutComponent
 }];

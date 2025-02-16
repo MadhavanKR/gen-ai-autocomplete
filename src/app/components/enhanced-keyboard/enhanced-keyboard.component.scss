@@ -34,21 +34,32 @@ input:focus, textarea:focus{
   // margin-top: 50px;
 }
 
+::ng-deep .hg-rows{
+width: 100%;
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+align-items: stretch;
+
+}
 ::ng-deep .hg-theme-default .hg-button.hg-standardBtn {
   // width: 20px;
-  height: 50px;
+  // height: 30px;
   font-size: x-large;
   font-weight: bolder;
   padding: 10px;
 }
 
 ::ng-deep .hg-theme-default .hg-row {
-  margin-top: 20px;
+  // margin-top: 20px;
+  display: inline-flex;
+
 }
 
 ::ng-deep .hg-theme-default .hg-button.hg-functionBtn {
   width: 50px;
-  height: 50px;
+  height: 30pxF;
   font-size: large;
   font-weight: bolder;
 }
@@ -65,7 +76,8 @@ input:focus, textarea:focus{
   box-shadow: 1px 3px 10px rgba(29, 54, 124, 0.767);
   // border: 1px solid red;
   justify-content: space-around;
-  align-items: center;
+  align-items: stretch;
+  flex-wrap: wrap;
 }
 
 .input-container {
@@ -97,11 +109,11 @@ input:focus, textarea:focus{
   height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
-
+  // overflow-y: scroll;
   margin-right: 10px;
-
 }
+
+
 
 .chat-history-header {
   // width: 100%;
@@ -139,7 +151,7 @@ input:focus, textarea:focus{
   height: 38%;
   display: flex;
   font-size: 20px;
-  overflow-y: scroll;
+  // overflow-y: scroll;
 
   .message-local {
     position: relative;
@@ -168,7 +180,36 @@ input:focus, textarea:focus{
 
     }
   }
+
+  
 }
+    ////////////////////////////////////////////////////
+  /// scrollbar css/////////////////////////
+  /// ////////////////////////////////////////
+  .chat-history-message {
+    overflow-y: scroll;
+  }
+
+  .chat-history-message::-webkit-scrollbar {
+    width: 11px
+  }
+  
+  .chat-history-message::-webkit-scrollbar-track {
+    background: #fdfdfd;
+    border-radius: 5px;
+  }
+  
+  .chat-history-message::-webkit-scrollbar-thumb {
+    background: #383e3b;
+    border-radius: 5px;
+    border: 1px solid #e7ebec;
+  }
+  
+  @supports not selector(::-webkit-scrollbar) {
+    .chat-history-message {
+      scrollbar-color:  #383e3b #fdfdfd;
+    }
+  }
 
 .chat {
   background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
@@ -181,7 +222,7 @@ input:focus, textarea:focus{
   padding: 8px 15px;
   margin: 5px 10px;
   width: 100px;
-  height: 100px;
+  height: 20%;
   font-size: 25px;
   font-weight: 400;
   letter-spacing: 1px;

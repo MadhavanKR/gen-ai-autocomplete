@@ -59,7 +59,7 @@ align-items: stretch;
 
 ::ng-deep .hg-theme-default .hg-button.hg-functionBtn {
   width: 50px;
-  height: 30pxF;
+  height: 30px;
   font-size: large;
   font-weight: bolder;
 }
@@ -367,22 +367,36 @@ align-items: stretch;
   z-index: -1;
 }
 
+.customer:hover {
+  color: #030303;
+  border: 1px solid #080808;
+  background-color: #94e651;
+
+}
+
 .word-button:hover {
   color: #030303;
-  border: 1px solid #94e651;
+  border: 1px solid #0c0c0c;
+  background-color: #94e651;
 }
 
-.word-button:hover:before {
-  top: -35%;
+::ng-deep .hg-button:hover {
+  color: #030303;
+  border: 1px solid #0c0c0c;
   background-color: #94e651;
-  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
 
-.word-button:hover:after {
-  top: -45%;
-  background-color: #94e651;
-  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
-}
+// .word-button:hover:before {
+//   top: -35%;
+//   background-color: #94e651;
+//   transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+// }
+
+// .word-button:hover:after {
+//   top: -45%;
+//   background-color: #94e651;
+//   transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+// }
 
 // loader 
 .loading-container {

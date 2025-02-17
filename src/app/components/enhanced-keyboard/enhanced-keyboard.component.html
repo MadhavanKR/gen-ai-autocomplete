@@ -21,7 +21,7 @@
 				</div>
 			</div>
 			<!-- <div *ngIf="!sentencePredictionLoading" style="display: flex; flex-direction: column;"> -->
-			<div *ngFor="let sentencePrediction of sentencePredictions" class="customer message__text"
+			<div appHoverClick *ngFor="let sentencePrediction of sentencePredictions" class="customer message__text"
 				(click)="onSentenceClick(sentencePrediction)">
 				<span>{{sentencePrediction}}</span>
 			</div>
@@ -37,13 +37,13 @@
 				<div class="loading-bar"></div>
 			</div>
 			<!-- <div *ngIf="!wordPredictionLoading"> -->
-			<button mat-button class="word-button" *ngFor="let wordPrediction of wordPredictions"
+			<button appHoverClick mat-button class="word-button" *ngFor="let wordPrediction of wordPredictions"
 				(click)="onWordClick(wordPrediction)">{{wordPrediction}}</button>
 			<!-- </div> -->
 		</div>
 
 		<div class="input-container">
-			<input onkeydown="return false" class="input" value={{sentence}} placeholder="Blink to start typing..." />
+			<input disabled onkeydown="return false" class="input" value={{sentence}} placeholder="Blink to start typing..." />
 		</div>
 		<div class="simple-keyboard"></div>
 	</div>

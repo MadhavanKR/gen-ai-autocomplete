@@ -17,12 +17,14 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatSelectModule} from '@angular/material/select';
 import { EnhancedKeyboardComponent } from './components/enhanced-keyboard/enhanced-keyboard.component';
 import { RouterModule } from '@angular/router';
+import { HoverClickDirective } from './directives/hover-click.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainLayoutComponent,
     EnhancedKeyboardComponent,
+    HoverClickDirective,
   ],
   imports: [
     RouterModule,

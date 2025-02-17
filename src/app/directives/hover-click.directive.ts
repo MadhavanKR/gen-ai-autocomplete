@@ -13,7 +13,7 @@ export class HoverClickDirective {
     this.timer = setTimeout(() => {
       console.log('am i coming here?')
       this.el.nativeElement.click();
-    }, 3000); // 2 seconds
+    }, 2000); // 2 seconds
   }
 
   @HostListener('mouseleave') onMouseLeave() {

@@ -9,15 +9,26 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
+import {MatRadioModule} from '@angular/material/radio';
 import { HttpClientModule } from '@angular/common/http';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+
 import {MatChipsModule} from '@angular/material/chips';
 import {MatSelectModule} from '@angular/material/select';
 import { EnhancedKeyboardComponent } from './components/enhanced-keyboard/enhanced-keyboard.component';
 import { RouterModule } from '@angular/router';
 import { HoverClickDirective } from './directives/hover-click.directive';
+import { MainPageV2Component } from './components/main-page-v2/main-page-v2.component';
+import { ProfileFormComponent } from './components/profile-form/profile-form.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { CallbackComponentComponent } from './components/callback-component/callback-component.component';
+import { ProfilePersonaComponentComponent } from './components/profile-persona-component/profile-persona-component.component';
 
 @NgModule({
   declarations: [
@@ -25,11 +36,16 @@ import { HoverClickDirective } from './directives/hover-click.directive';
     MainLayoutComponent,
     EnhancedKeyboardComponent,
     HoverClickDirective,
+    MainPageV2Component,
+    ProfileFormComponent,
+    CallbackComponentComponent,
+    ProfilePersonaComponentComponent,
   ],
   imports: [
     RouterModule,
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatCardModule,
@@ -40,7 +56,11 @@ import { HoverClickDirective } from './directives/hover-click.directive';
     MatFormFieldModule,
     FormsModule,
     MatChipsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    OAuthModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

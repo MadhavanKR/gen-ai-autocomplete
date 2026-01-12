@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Patient Persona</h2>
+
+<mat-dialog-content class="profileForm">
+    <p *ngIf="isLoading$ | async">User status:</p>
+
+  <div class="loading-overlay" *ngIf="isLoading$ | async">
+    <mat-spinner ></mat-spinner>
+  </div>
+
+  <form [formGroup]="form" class="profile-grid">
+    <mat-form-field class="form-field">
+      <mat-label>Persona:</mat-label>
+      <textarea formControlName="patientPersona" matInput class="fixed-textarea"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Medical condition details:</mat-label>
+      <textarea formControlName="diagnosisDetails" matInput class="fixed-textarea"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button (click)="generatePersona()">Generate</button>
+  <button mat-raised-button class="custom-blue-btn" (click)="save()" [disabled]="isLoading$ | async">Save</button>
+  <button mat-raised-button (click)="close()">Close</button>
+
+</mat-dialog-actions>

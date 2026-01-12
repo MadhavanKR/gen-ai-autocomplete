@@ -1,0 +1,17 @@
+.profileForm {
+    // margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profileForm mat-form-field {
+    margin-top: 5vh;
+    width: 40vw;
+}
+
+.custom-blue-btn {
+  --mdc-protected-button-container-color: #007bff; /* Background color */
+  --mdc-protected-button-label-text-color: white; /* Text color */
+}

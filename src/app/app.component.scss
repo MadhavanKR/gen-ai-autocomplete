@@ -2,11 +2,12 @@
     display: flex;
     flex-direction: row;
 }
+
 .title-toolbar{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: rgb(32, 26, 26);
+    background-color: #2A7BBF;
     color: white;
 }
 
@@ -22,4 +23,44 @@
     margin-top: 20px;
     margin-right: 10px;
     
+}
+
+/* styles.scss or component SCSS */
+.login-container {
+  display: flex;
+  justify-content: center;   /* horizontal centering */
+  align-items: center;       /* vertical centering */
+  height: 100vh;             /* full viewport height */
+  background-color: #f0f2f5; /* optional: light background */
+}
+
+.login-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;                 /* spacing between message and button */
+  padding: 2rem 3rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.login-box p {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.login-box button {
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff; /* blue button */
+  color: white;
+  cursor: pointer;
+}
+
+.login-box button:hover {
+  background-color: #0056b3;
 }

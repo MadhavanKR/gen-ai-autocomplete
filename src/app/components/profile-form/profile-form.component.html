@@ -1,83 +1,91 @@
 <div class="profileForm">
-    <h2>Patient details</h2>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h2>Patient details</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-        <!-- Name input -->
-        <div>
-            <mat-form-field>
-                <mat-label>Name:</mat-label>
-                <input formControlName="name" matInput />
-                <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched" style="color:red;">
-                    Name is required.
-                </div>
-            </mat-form-field>
+    <!-- Name input -->
+    <div>
+      <mat-form-field>
+        <mat-label>Name:</mat-label>
+        <input formControlName="name" matInput />
+        @if (form.controls['name'].invalid && form.controls['name'].touched) {
+          <div style="color:red;">
+            Name is required.
+          </div>
+        }
+      </mat-form-field>
+    </div>
+
+    <div>
+      <!-- <mat-form-field> -->
+      <label id="example-radio-group-label">Gender</label>
+
+      <mat-radio-group aria-label="Select an option" formControlName="gender">
+        <mat-radio-button value="1">Male</mat-radio-button>
+        <mat-radio-button value="2">Female</mat-radio-button>
+      </mat-radio-group>
+    <!-- </mat-form-field> -->
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Language</mat-label>
+      <mat-select formControlName="language">
+        <mat-option value="one">English</mat-option>
+        <mat-option value="two">Arabic</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Medical conditions</mat-label>
+      <mat-select formControlName="medicalConditions" multiple>
+        <!-- @for (medicalCondition of medicalConditionList; track medicalCondition) {
+        <mat-option [value]="medicalCondition">{{medicalCondition}}</mat-option>
+        } -->
+        @for (medicalCondition of medicalConditionList; track medicalCondition) {
+          <mat-option [value]="medicalCondition">
+            {{ medicalCondition }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Medications</mat-label>
+      <mat-select formControlName="medications" multiple>
+        @for (medication of medicationsList; track medication) {
+          <mat-option [value]="medication">
+            {{ medication }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Additional patient details:</mat-label>
+      <textarea formControlName="additionalDetails" matInput></textarea>
+      @if (form.controls['name'].invalid && form.controls['name'].touched) {
+        <div style="color:red;">
+          Name is required.
         </div>
-
-        <div>
-            <!-- <mat-form-field> -->
-               <label id="example-radio-group-label">Gender</label>
-
-                <mat-radio-group aria-label="Select an option" formControlName="gender">
-                    <mat-radio-button value="1">Male</mat-radio-button>
-                    <mat-radio-button value="2">Female</mat-radio-button>
-                </mat-radio-group>
-            <!-- </mat-form-field> -->
-        </div>
-
-        <div>
-            <mat-form-field>
-                <mat-label>Language</mat-label>
-                <mat-select formControlName="language">
-                    <mat-option value="one">English</mat-option>
-                    <mat-option value="two">Arabic</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-
-        <div>
-            <mat-form-field>
-                <mat-label>Medical conditions</mat-label>
-                <mat-select formControlName="medicalConditions" multiple>
-                    <!-- @for (medicalCondition of medicalConditionList; track medicalCondition) {
-                    <mat-option [value]="medicalCondition">{{medicalCondition}}</mat-option>
-                    } -->
-                    <mat-option *ngFor="let medicalCondition of medicalConditionList" [value]="medicalCondition">
-                        {{ medicalCondition }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-
-        </div>
-
-        <div>
-            <mat-form-field>
-                <mat-label>Medications</mat-label>
-                <mat-select formControlName="medications" multiple>
-                    <mat-option *ngFor="let medication of medicationsList" [value]="medication">
-                        {{ medication }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-
-        </div>
-
-        <div>
-            <mat-form-field>
-                <mat-label>Additional patient details:</mat-label>
-                <textarea formControlName="additionalDetails" matInput></textarea>
-                <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched" style="color:red;">
-                    Name is required.
-                </div>
-            </mat-form-field>
-        </div>
+      }
+    </mat-form-field>
+  </div>
 
 
 
 
 
-        <!-- <button type="submit" [disabled]="form.invalid" matButton="outlined">Submit</button> -->
-        <button mat-raised-button class="custom-blue-btn" (click)="openDialog()">View Persona</button>
-    </form>
+  <!-- <button type="submit" [disabled]="form.invalid" matButton="outlined">Submit</button> -->
+  <button mat-raised-button class="custom-blue-btn" (click)="openDialog()">View Persona</button>
+</form>
 
 
 </div>

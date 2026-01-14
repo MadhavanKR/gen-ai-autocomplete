@@ -1,70 +1,82 @@
 <div class="main-container">
 
-    <div class="input-container">
-        <div class="input-contents-container">
-            <div class="container-header"> Sentences </div>
-            <div style="align-items: center;" *ngIf="sentencePredictions.length == 0">
-                <span> Start typing for predictions to show up..</span>
-            </div>
-            <div class="chat-container" style="display: flex; flex-wrap: wrap;">
-                <div *ngFor="let sentencePrediction of sentencePredictions" class="message-local"
-                    (click)="onSentenceClick(sentencePrediction)">
-                    <p>{{sentencePrediction}}</p>
-                </div>
-            </div>
+  <div class="input-container">
+    <div class="input-contents-container">
+      <div class="container-header"> Sentences </div>
+      @if (sentencePredictions.length == 0) {
+        <div style="align-items: center;">
+          <span> Start typing for predictions to show up..</span>
         </div>
-
-        <!-- <div class="input-contents-container">
-            <div class="container-header"> Words </div>
-            <div style="align-items: center;" *ngIf="wordPredictions.length == 0">
-                <span> Start typing for predictions to show up</span>
-            </div>
-            <div class="chat-container" style="display: flex; flex-wrap: wrap;">
-                <div *ngFor="let wordPrediction of wordPredictions" class="message-local"
-                    (click)="onSentenceClick(wordPrediction)">
-                    <p>{{wordPrediction}}</p>
-                </div>
-            </div>
-        </div> -->
-
-        <div class="input-contents-container">
-            <div class="container-header"> Letters </div>
-            <div>
-                <mat-grid-list cols="12">
-                    <mat-grid-tile *ngFor="let letter of LETTERS" (click)="onLetterClick(letter);">
-                        <h1 class="mat-display-1"> {{ letter }} </h1>
-                    </mat-grid-tile>
-                </mat-grid-list>
-            </div>
-        </div>
+      }
+      <div class="chat-container" style="display: flex; flex-wrap: wrap;">
+        @for (sentencePrediction of sentencePredictions; track sentencePrediction) {
+          <div class="message-local"
+            (click)="onSentenceClick(sentencePrediction)">
+            <p>{{sentencePrediction}}</p>
+          </div>
+        }
+      </div>
     </div>
 
-    <div class="sentence-container">
-        <div class="chat-container">
-            <div *ngFor="let curSentence of sentenceLog" class="message-local">
-                <p>{{curSentence}}</p>
-            </div>
-        </div>
-
-        <mat-form-field class="input-full-width">
-            <mat-label>Current sentence</mat-label>
-            <input matInput placeholder="Start typing.." value={{sentence}} (keyup)="updateCurrentSentence($event)">
-        </mat-form-field>
-
-        <hr />
-        <div class="undo-button">
-            <button mat-flat-button color="primary" (click)="addSentenceToLog()">Enter</button>
-            <!-- <button mat-flat-button color="primary" (click)="removeLastLetter()">Backspace</button> -->
-        </div>
-        <br />
-
-        <div *ngIf="wordPredictions.length > 0">
-            <mat-chip-set cdkDropList cdkDropListOrientation="horizontal">
-                <mat-chip class="word-box" *ngFor="let wordPrediction of wordPredictions"
-                    (click)="onWordClick(wordPrediction)">
-                    {{wordPrediction}}
-                </mat-chip>
-            </mat-chip-set>
-        </div>
+    <!-- <div class="input-contents-container">
+    <div class="container-header"> Words </div>
+    <div style="align-items: center;" *ngIf="wordPredictions.length == 0">
+      <span> Start typing for predictions to show up</span>
     </div>
+    <div class="chat-container" style="display: flex; flex-wrap: wrap;">
+      <div *ngFor="let wordPrediction of wordPredictions" class="message-local"
+        (click)="onSentenceClick(wordPrediction)">
+        <p>{{wordPrediction}}</p>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="input-contents-container">
+    <div class="container-header"> Letters </div>
+    <div>
+      <mat-grid-list cols="12">
+        @for (letter of LETTERS; track letter) {
+          <mat-grid-tile (click)="onLetterClick(letter);">
+            <h1 class="mat-display-1"> {{ letter }} </h1>
+          </mat-grid-tile>
+        }
+      </mat-grid-list>
+    </div>
+  </div>
+</div>
+
+<div class="sentence-container">
+  <div class="chat-container">
+    @for (curSentence of sentenceLog; track curSentence) {
+      <div class="message-local">
+        <p>{{curSentence}}</p>
+      </div>
+    }
+  </div>
+
+  <mat-form-field class="input-full-width">
+    <mat-label>Current sentence</mat-label>
+    <input matInput placeholder="Start typing.." value={{sentence}} (keyup)="updateCurrentSentence($event)">
+  </mat-form-field>
+
+  <hr />
+  <div class="undo-button">
+    <button mat-flat-button color="primary" (click)="addSentenceToLog()">Enter</button>
+    <!-- <button mat-flat-button color="primary" (click)="removeLastLetter()">Backspace</button> -->
+  </div>
+  <br />
+
+  @if (wordPredictions.length > 0) {
+    <div>
+      <mat-chip-set cdkDropList cdkDropListOrientation="horizontal">
+        @for (wordPrediction of wordPredictions; track wordPrediction) {
+          <mat-chip class="word-box"
+            (click)="onWordClick(wordPrediction)">
+            {{wordPrediction}}
+          </mat-chip>
+        }
+      </mat-chip-set>
+    </div>
+  }
+</div>
 </div>

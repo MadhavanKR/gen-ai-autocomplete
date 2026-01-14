@@ -1,11 +1,15 @@
 <h2 mat-dialog-title>Patient Persona</h2>
 
 <mat-dialog-content class="profileForm">
-    <p *ngIf="isLoading$ | async">User status:</p>
+  @if (isLoading$ | async) {
+    <p>User status:</p>
+  }
 
-  <div class="loading-overlay" *ngIf="isLoading$ | async">
-    <mat-spinner ></mat-spinner>
-  </div>
+  @if (isLoading$ | async) {
+    <div class="loading-overlay">
+      <mat-spinner ></mat-spinner>
+    </div>
+  }
 
   <form [formGroup]="form" class="profile-grid">
     <mat-form-field class="form-field">

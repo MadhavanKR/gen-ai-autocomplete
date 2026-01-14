@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
-  selector: 'app-callback-component',
-  templateUrl: './callback-component.component.html',
-  styleUrls: ['./callback-component.component.scss']
+    selector: 'app-callback-component',
+    templateUrl: './callback-component.component.html',
+    styleUrls: ['./callback-component.component.scss'],
+    standalone: false
 })
 export class CallbackComponentComponent implements OnInit {
   constructor(private oauthService: OAuthService) {}

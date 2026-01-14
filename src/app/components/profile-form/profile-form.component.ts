@@ -6,9 +6,10 @@ import { HttpclientService, PatientDetails } from 'src/app/services/httpclient.s
 import { ProfilePersonaComponentComponent } from '../profile-persona-component/profile-persona-component.component';
 
 @Component({
-  selector: 'app-profile-form',
-  templateUrl: './profile-form.component.html',
-  styleUrls: ['./profile-form.component.scss']
+    selector: 'app-profile-form',
+    templateUrl: './profile-form.component.html',
+    styleUrls: ['./profile-form.component.scss'],
+    standalone: false
 })
 export class ProfileFormComponent implements OnInit {
   form: FormGroup;

@@ -6,9 +6,10 @@ import { Subscription } from 'rxjs';
 import { HttpclientService, PredictionResponse, WordPredictionResponse, ChatMessage } from 'src/app/services/httpclient.service';
 
 @Component({
-  selector: 'app-main-page-v2',
-  templateUrl: './main-page-v2.component.html',
-  styleUrls: ['./main-page-v2.component.scss']
+    selector: 'app-main-page-v2',
+    templateUrl: './main-page-v2.component.html',
+    styleUrls: ['./main-page-v2.component.scss'],
+    standalone: false
 })
 export class MainPageV2Component implements AfterViewInit {
 

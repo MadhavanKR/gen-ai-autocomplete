@@ -4,9 +4,10 @@ import { AllPatientResponse, HttpclientService } from './services/httpclient.ser
 import { authConfig } from './services/auth-config.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent {
   isLoggedIn = false;

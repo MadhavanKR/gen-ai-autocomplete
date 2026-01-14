@@ -2,7 +2,8 @@ import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
 
 
 @Directive({
-  selector: '[appHoverClick]'
+    selector: '[appHoverClick]',
+    standalone: false
 })
 export class HoverClickDirective {
   private timer: any;

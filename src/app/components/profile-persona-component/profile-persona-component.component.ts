@@ -5,9 +5,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpclientService, PatientPersonaDetails } from 'src/app/services/httpclient.service';
 
 @Component({
-  selector: 'app-profile-persona-component',
-  templateUrl: './profile-persona-component.component.html',
-  styleUrls: ['./profile-persona-component.component.scss']
+    selector: 'app-profile-persona-component',
+    templateUrl: './profile-persona-component.component.html',
+    styleUrls: ['./profile-persona-component.component.scss'],
+    standalone: false
 })
 export class ProfilePersonaComponentComponent implements OnInit {
   form: FormGroup;

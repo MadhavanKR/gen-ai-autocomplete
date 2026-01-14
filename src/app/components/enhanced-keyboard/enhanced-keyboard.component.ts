@@ -4,9 +4,10 @@ import Keyboard from "simple-keyboard";
 import { HttpclientService, PredictionResponse, WordPredictionResponse, ChatMessage } from 'src/app/services/httpclient.service';
 
 @Component({
-  selector: 'app-enhanced-keyboard',
-  templateUrl: './enhanced-keyboard.component.html',
-  styleUrls: ['./enhanced-keyboard.component.scss']
+    selector: 'app-enhanced-keyboard',
+    templateUrl: './enhanced-keyboard.component.html',
+    styleUrls: ['./enhanced-keyboard.component.scss'],
+    standalone: false
 })
 export class EnhancedKeyboardComponent implements AfterViewInit {
   value = "";

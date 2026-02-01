@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthConfig } from 'angular-oauth2-oidc';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class AuthConfigService {
 
 
 export const authConfig: AuthConfig = {
-  issuer: 'http://localhost:8080',
-  redirectUri: 'http://localhost:4200/callback',
+  issuer: environment.authServerUrl,
+  redirectUri: environment.callbackUrl,
   clientId: 'blinkai-client',
   responseType: 'code',
   scope: 'blinkai',    

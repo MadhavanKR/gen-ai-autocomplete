@@ -10,7 +10,7 @@ import { authConfig } from './services/auth-config.service';
     standalone: false
 })
 export class AppComponent {
-  isLoggedIn = false;
+  isLoggedIn = true;
   userName: string = '';
   title = 'mk_autocomplete_angular';
   patient: string = ''
@@ -22,10 +22,13 @@ export class AppComponent {
 
     this.oauthService.configure(authConfig);
     this.oauthService.loadDiscoveryDocumentAndTryLogin().then(() => {
+      this.isLoggedIn = true;
       if (this.oauthService.hasValidAccessToken()) {
-        this.isLoggedIn = true;
+        console.log('login succeeded: ' + this.oauthService.hasValidAccessToken);
         const claims: any = this.oauthService.getIdentityClaims();
         this.userName = claims?.name;
+      } else {
+        console.log('login failed: ' + this.oauthService.hasValidAccessToken)
       }
     });
 

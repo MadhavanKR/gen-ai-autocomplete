@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 export interface PredictionResponse {
   sentence_predictions: string[];
@@ -50,7 +51,7 @@ export interface PatientDetails {
   providedIn: 'root'
 })
 export class HttpclientService {
-  baseUrl = 'http://localhost:5000/';
+  baseUrl = environment.apiUrl;
   participant = 'doctor';
   topic = 'treatment';
   patientId = 'f1833e58-c9bd-42d6-a6a1-ac91fbb6ce11';

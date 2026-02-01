@@ -1,0 +1,94 @@
+/* wrap the content so overlay can be absolute without affecting layout */
+.profileForm {
+  position: relative;        /* IMPORTANT: overlay is absolute to this */
+  padding: 1rem 1.25rem 1.25rem 1.25rem;
+  box-sizing: border-box;
+  
+}
+
+/* grid for the two fields: two columns on wide, single on narrow */
+.profile-grid {
+  display: flex;
+   flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+/* each mat-form-field will take roughly half the width but remain responsive */
+.form-field {
+  // flex: 1 1 calc(50% - 0.5rem); /* two columns */
+  // min-width: 260px;   
+  width: 100%;          /* prevents them becoming tiny */
+  box-sizing: border-box;
+}
+
+/* ensure the actual mat-form-field wrapper stretches */
+.form-field .mat-mdc-form-field-flex,
+.form-field .mat-mdc-text-field {
+  width: 100%;
+}
+
+/* Fixed textarea sizing, scrollable on overflow */
+.fixed-textarea {
+  width: 100% !important;       /* ensure it fills the field wrapper */
+  height: 200px !important;     /* desired height */
+  min-height: 150px;
+  max-height: 300px;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  overflow: auto;               /* internal scroll */
+  resize: vertical;             /* optional - could be none */
+}
+
+/* Loading overlay: absolute so it does NOT shift or resize content */
+.loading-overlay {
+  position: absolute;
+  inset: 0; /* top:0; left:0; right:0; bottom:0 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255,255,255,0.85);
+  z-index: 50;
+  pointer-events: auto; /* blocks interaction while loading */
+  backdrop-filter: blur(1px);
+}
+
+/* small responsive tweak: on narrow screens stack fields vertically */
+@media (max-width: 640px) {
+  .form-field {
+    flex: 1 1 100%;
+    min-width: auto;
+  }
+  .fixed-textarea {
+    height: 180px !important;
+  }
+}
+
+.loader {
+    width: 20%;
+    height: 20%;
+    max-width: 40px;   /* never too large */
+    min-width: 18px;   /* never too small */
+    max-height: 40px;   /* never too large */
+    min-height: 18px;   /* never too small */
+
+    aspect-ratio: 1;   /* always stays a circle */
+    border-radius: 50%;
+
+    border: 0.25em solid #c5ccff;
+    border-top-color: #4285f4;
+
+    animation: spin 0.9s linear infinite;
+
+    margin: auto;
+    display: block;
+}
+
+
+/* Spinner animation */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+

@@ -1,0 +1,60 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="main-container">
+  <div class="chat-history-container">
+    <div class="chat-history-header">
+      <span style="margin-top: 10px;">Chat History</span>
+    </div>
+    <div class="chat-history-message">
+      @for (sentence of sentenceLog; track sentence) {
+        <div class="customer_log message__text_log">
+          <span>{{sentence}}</span>
+        </div>
+      }
+    </div>
+  </div>
+  <div class="user-input-container">
+    <div class="sentence-prediction-container">
+      <div class="loading-container">
+        @if (sentencePredictionLoading) {
+          <div class="loading-wave">
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+          </div>
+        }
+      </div>
+      <!-- <div *ngIf="!sentencePredictionLoading" style="display: flex; flex-direction: column;"> -->
+      @for (sentencePrediction of sentencePredictions; track sentencePrediction) {
+        <div appHoverClick class="customer message__text"
+          (click)="onSentenceClick(sentencePrediction)">
+          <span>{{sentencePrediction}}</span>
+        </div>
+      }
+    <!-- </div> -->
+
+  </div>
+
+  <div class="word-prediction-container">
+    @if (wordPredictionLoading) {
+      <div class="loading-wave">
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
+      </div>
+    }
+    <!-- <div *ngIf="!wordPredictionLoading"> -->
+    @for (wordPrediction of wordPredictions; track wordPrediction) {
+      <button appHoverClick mat-button class="word-button"
+      (click)="onWordClick(wordPrediction)">{{wordPrediction}}</button>
+    }
+  <!-- </div> -->
+</div>
+
+<div class="input-container">
+  <input disabled onkeydown="return false" class="input" value={{sentence}} placeholder="Blink to start typing..." />
+</div>
+<div class="simple-keyboard"></div>
+</div>
+</div>

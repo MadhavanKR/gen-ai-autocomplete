@@ -2,9 +2,10 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { HttpclientService, PredictionResponse, WordPredictionResponse } from 'src/app/services/httpclient.service';
 
 @Component({
-  selector: 'app-main-layout',
-  templateUrl: './main-layout.component.html',
-  styleUrls: ['./main-layout.component.scss']
+    selector: 'app-main-layout',
+    templateUrl: './main-layout.component.html',
+    styleUrls: ['./main-layout.component.scss'],
+    standalone: false
 })
 
 export class MainLayoutComponent {
@@ -33,6 +34,7 @@ export class MainLayoutComponent {
     if (this.sentence.length >= 2) {
       this.updateWordPredictions();
     }
+    
   }
 
   updateCurrentSentence(event: any) {
@@ -56,11 +58,9 @@ export class MainLayoutComponent {
 
   addSentenceToLog() {
     if (this.sentence) {
-      this.httpClientService.addToContext(this.sentence);
       this.sentenceLog.push(this.sentence);
       this.sentence = '';
     }
-    
   }
 
   onWordClick(word: any) {

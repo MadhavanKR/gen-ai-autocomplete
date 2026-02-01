@@ -1,29 +1,48 @@
-<div class="app-container">
-    <mat-toolbar class="title-toolbar" color="primary">
+@if (!isLoggedIn) {
+  <div class="login-container">
+    <div class="login-box">
+      <p>Please login to continue</p>
+      <button (click)="login()">Login</button>
+    </div>
+  </div>
+}
+
+@if (isLoggedIn) {
+  <div>
+    <div class="app-container">
+      <mat-toolbar class="title-toolbar">
         <div class="title">
-            <span>Autocomplete</span>
+          <span>Blink AI</span>
         </div>
         <div>
-            <mat-form-field class="dropdown-select">
-                <mat-label>Select a participant</mat-label>
-                <mat-select [(value)]="participant" (valueChange)="onParticipantChange($event)">
-                    <mat-option>None</mat-option>
-                    <mat-option value="doctor">Doctor</mat-option>
-                    <mat-option value="family">Family</mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <mat-form-field class="dropdown-select">
-                <mat-label>Select a topic</mat-label>
-                <mat-select [(value)]="topic" (valueChange)="onTopicChange($event)">
-                    <mat-option>None</mat-option>
-                    <mat-option value="treatment,recovery">Treatment & recovery</mat-option>
-                    <mat-option value="finances,insurance">Finances & insurance</mat-option>
-                    <mat-option value="family wellbeing">Family wellbeing</mat-option>
-                </mat-select>
-            </mat-form-field>
+          <mat-form-field class="dropdown-select">
+            <mat-label>Select a patient</mat-label>
+            <mat-select [(value)]="patient" (valueChange)="onPatientChange($event)">
+              @for (p of allPatients; track p) {
+                <mat-option [value]="p.patientId">{{p.patientName}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="dropdown-select">
+            <mat-label>Select a participant</mat-label>
+            <mat-select [(value)]="participant" (valueChange)="onParticipantChange($event)">
+              <mat-option>None</mat-option>
+              <mat-option value="doctor">Doctor</mat-option>
+              <mat-option value="family">Family</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="dropdown-select">
+            <mat-label>Select a topic</mat-label>
+            <mat-select [(value)]="topic" (valueChange)="onTopicChange($event)">
+              <mat-option>None</mat-option>
+              <mat-option value="treatment,recovery">Treatment & recovery</mat-option>
+              <mat-option value="finances,insurance">Finances & insurance</mat-option>
+              <mat-option value="family wellbeing">Family wellbeing</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
-    </mat-toolbar>
-</div>
-
-<app-main-layout />
+      </mat-toolbar>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+}

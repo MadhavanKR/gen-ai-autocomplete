@@ -1,0 +1,125 @@
+<!-- <div class="container">
+<div class="chatHistory">
+  <h3>Chat history</h3>
+  <div class="sentence-list">
+    <button class="prediction-card">What medications am i on?</button>
+  </div>
+</div>
+<div class="wordPrediction">
+  <h3>Word predictions</h3>
+  <div class="word-list">
+    <button class="word-button">pain</button>
+    <button class="word-button">medication</button>
+    <button class="word-button">better</button>
+    <button class="word-button">rest</button>
+    <button class="word-button">soon</button>
+  </div>
+</div>
+<div class="sentencePrediction">
+  <h3>Sentence predictions</h3>
+  <div class="sentence-list">
+    <button class="prediction-card">Can you tell me more about that?</button>
+    <button class="prediction-card">I understand how you feel.</button>
+    <button class="prediction-card">I want to talk about my pain</button>
+    <button class="prediction-card">Am I</button>
+  </div>
+</div>
+<div class="keyboardInput"><input disabled onkeydown="return false" class="input" value={{keyboardInput}}
+placeholder="Blink to start typing..." /></div>
+<div class="keyboard">
+  <div class="simple-keyboard"></div>
+</div>
+</div> -->
+
+<!-- New version -->
+
+<!-- Updated main-page-v2.component.html -->
+<div class="container">
+  <!-- <div class="chatHistory">
+  <h3>Chat history</h3>
+  <div class="chat-bubbles">
+    <div class="bubble user">What medications am I on?</div>
+    <div class="bubble system">You're taking ibuprofen 200mg daily.</div>
+    <div class="bubble user">Can I rest now?</div>
+  </div>
+</div> -->
+
+<div class="chatHistory">
+  <h3>Chat history</h3>
+  <div class="chat-bubbles">
+    @for (sentence of sentenceLog; track sentence) {
+      <div class="bubble user">{{sentence}}</div>
+    }
+  </div>
+</div>
+
+
+<!-- <div class="sentencePrediction">
+<h3>Sentence predictions</h3>
+<div class="sentence-list">
+  <button class="prediction-card">Can you tell me more about that?</button>
+  <button class="prediction-card">I understand how you feel. but you should as well try to understand how I feel</button>
+  <button class="prediction-card">I want to talk about my pain.</button>
+  <button class="prediction-card">Am I improving?</button>
+  <button class="prediction-card">Can I take my medicine now?</button>
+  <button class="prediction-card">Am I improving?</button>
+  <button class="prediction-card">Can I take my medicine now?</button>
+  <button class="prediction-card">Am I improving?</button>
+  <button class="prediction-card">Can I take my medicine now?</button>
+  <button class="prediction-card">Am I improving?</button>
+  <button class="prediction-card">Can I take my medicine now?</button>
+</div>
+</div> -->
+
+<div class="sentencePrediction">
+  <h3>Sentence predictions</h3>
+  @if (sentencePredictionLoading) {
+    <div class="loader"></div>
+  }
+
+  @if (!sentencePredictionLoading) {
+    <div class="sentence-list">
+      @for (sentencePrediction of sentencePredictions; track sentencePrediction) {
+        <button appHoverClick class="prediction-card" (click)="onSentenceClick(sentencePrediction)">{{sentencePrediction}}</button>
+      }
+    </div>
+  }
+</div>
+
+<!-- <div class="wordPrediction">
+<h3>Word predictions</h3>
+<div class="word-list">
+  <button class="word-button">pain</button>
+  <button class="word-button">medication</button>
+  <button class="word-button">better</button>
+  <button class="word-button">rest</button>
+  <button class="word-button">soon</button>
+</div>
+</div> -->
+
+<div class="wordPrediction">
+  <h3>Word predictions</h3>
+  @if (wordPredictionLoading) {
+    <div class="loader"></div>
+  }
+
+  @if (!wordPredictionLoading) {
+    <div class="word-list">
+      @for (wordPrediction of wordPredictions; track wordPrediction) {
+        <button appHoverClick class="word-button" (click)="onWordClick(wordPrediction)">{{wordPrediction}}</button>
+      }
+    </div>
+  }
+</div>
+
+
+<div class="keyboardInput">
+  <input disabled onkeydown="return false" class="input" value={{sentence}}
+    placeholder="Blink to start typing..." />
+</div>
+
+
+<div class="keyboard">
+  <div class="simple-keyboard"></div>
+</div>
+</div>
